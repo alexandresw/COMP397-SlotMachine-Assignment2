@@ -12,12 +12,7 @@ var leftCave;
 var rightCave;
 var assetData = [
     { id: "BackButton", src: "../../Assets/images/BackButton.png" },
-    { id: "IntroCave", src: "../../Assets/images/IntroCave.png" },
-    { id: "LeftCave", src: "../../Assets/images/LeftCave.png" },
-    { id: "LeftCaveButton", src: "../../Assets/images/LeftCaveButton.png" },
     { id: "Nextbutton", src: "../../Assets/images/Nextbutton.png" },
-    { id: "RightCave", src: "../../Assets/images/RightCave.png" },
-    { id: "RightCaveButton", src: "../../Assets/images/RightCaveButton.png" },
     { id: "StartButton", src: "../../Assets/images/StartButton.png" },
     { id: "StartOverButton", src: "../../Assets/images/StartOverButton.png" }
 ];

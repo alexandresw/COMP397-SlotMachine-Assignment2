@@ -1,3 +1,3 @@
-# COMP397-W2016-TheNewDragon
+# COMP397-SlotMachine-Assignment2
 
-COMP397 The New Dragon Template for Web Game Programming @ Centennial
+COMP397 The Slot Machine Game - Assignment 02
