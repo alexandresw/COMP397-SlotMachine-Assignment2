@@ -3,7 +3,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-// INTRO SCENE
+// MENU SCENE
 var scenes;
 (function (scenes) {
     var Menu = (function (_super) {
@@ -15,16 +15,18 @@ var scenes;
         // PUBLIC METHODS +++++++++++++++++++++
         // Start Method
         Menu.prototype.start = function () {
-            // add Intro Image
-            this._introImage = new createjs.Bitmap(assets.getResult("IntroCave"));
-            this.addChild(this._introImage);
-            this._welcomeLabel = new objects.Label("MENU", "60px Consolas", "#000", config.Screen.CENTER_X, config.Screen.CENTER_Y);
+            // add the WELCOME Label to the MENU scene
+            this._welcomeLabel = new objects.Label("SLOT MACHINE", "60px Consolas", "#000000", config.Screen.CENTER_X, config.Screen.CENTER_Y);
             this.addChild(this._welcomeLabel);
-            // add the Start button to the MENU scene
-            this._startButton = new objects.Button("StartButton", config.Screen.CENTER_X, config.Screen.CENTER_Y + 180);
+            // add the START button to the MENU scene
+            this._startButton = new objects.Button("StartButton", config.Screen.CENTER_X, config.Screen.CENTER_Y + 80, true);
             this.addChild(this._startButton);
-            // Start Button event listener
+            // START Button event listener
             this._startButton.on("click", this._startButtonClick, this);
+            // Setup Background
+            this._setupBackground("WhiteBackground");
+            // FadeIn
+            this._fadeIn(500);
             // add this scene to the global stage container
             stage.addChild(this);
         };
@@ -32,11 +34,14 @@ var scenes;
         Menu.prototype.update = function () {
         };
         //EVENT HANDLERS ++++++++++++++++++++
-        // Start Button click event handler
+        // START Button click event handler
         Menu.prototype._startButtonClick = function (event) {
-            // Switch to the LEFT_CAVE Scene
-            scene = config.Scene.SLOT_MACHINE;
-            changeScene();
+            //FadeOut 
+            this._fadeOut(500, function () {
+                // Switch to the LEFT_CAVE Scene
+                scene = config.Scene.SLOT_MACHINE;
+                changeScene();
+            });
         };
         return Menu;
     })(objects.Scene);

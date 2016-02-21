@@ -18,7 +18,15 @@ var assetData:objects.Asset[] = [
     {id: "BackButton", src:"../../Assets/images/BackButton.png"},
     {id: "Nextbutton", src:"../../Assets/images/Nextbutton.png"},
     {id: "StartButton", src:"../../Assets/images/StartButton.png"},
-    {id: "StartOverButton", src:"../../Assets/images/StartOverButton.png"}
+
+    {id: "StartOverButton", src:"../../Assets/images/StartOverButton.png"},
+    {id: "SlotMachine", src:"../../Assets/images/SlotMachine.png"},
+    {id: "Bet1Button", src:"../../Assets/images/Bet1Button.png"},
+    {id: "Bet10Button", src:"../../Assets/images/Bet10Button.png"},
+    {id: "Bet100Button", src:"../../Assets/images/Bet100Button.png"},
+    {id: "SpinButton", src:"../../Assets/images/SpinButton.png"},
+    {id: "BlackBackground", src:"../../Assets/images/BlackBackground.png"},
+    {id: "WhiteBackground", src:"../../Assets/images/WhiteBackground.png"}
 ];
 
 function preload() {
@@ -90,20 +98,19 @@ function changeScene(): void {
             console.log("Starting MENU Scene");
             break;
         case config.Scene.SLOT_MACHINE:
-            // show the SLOT_MACHINE scene
+            // show the PLAY scene
             stage.removeAllChildren();
             slotMachine = new scenes.SlotMachine();
             currentScene = slotMachine;
             console.log("Starting SLOT_MACHINE Scene");
             break;
         case config.Scene.GAME_OVER:
-            // show the GAME_OVER scene
+            // show the game OVER scene
             stage.removeAllChildren();
             gameOver = new scenes.GameOver();
             currentScene = gameOver;
             console.log("Starting GAME_OVER Scene");
             break;
-       
     }
 
     console.log(currentScene.numChildren);

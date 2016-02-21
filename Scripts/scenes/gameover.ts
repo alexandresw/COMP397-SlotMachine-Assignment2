@@ -1,10 +1,9 @@
-﻿// INTRO SCENE
+// GAME_OVER SCENE
 module scenes {
     export class GameOver extends objects.Scene {
         //PRIVATE INSTANCE VARIABLES ++++++++++++
-        private _introImage: createjs.Bitmap;
-        private _startOverButton: objects.Button;
-        private _gameOverLabel: objects.Label;
+        private _startOverButton:objects.Button;
+        private _gameOverLabel:objects.Label;
         
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor() {
@@ -14,27 +13,25 @@ module scenes {
         // PUBLIC METHODS +++++++++++++++++++++
         
         // Start Method
-        public start(): void {
-            // add Intro Image
-            this._introImage = new createjs.Bitmap(assets.getResult("IntroCave"));
-            this.addChild(this._introImage);
+        public start(): void {    
             
-            this._gameOverLabel = new objects.Label("Game Over", "60px Consolas", "#000", 
-                config.Screen.CENTER_X,
-                config.Screen.CENTER_Y
-            );
-            this.addChild(this._gameOverLabel);
-            
-            
-            
-            // add the Start button to the MENU scene
+            // add the WELCOME Label to the MENU scene
+            this._gameOverLabel = new objects.Label(
+                "GAME OVER", 
+                "60px Consolas", 
+                "#000000", 
+                config.Screen.CENTER_X, 
+                config.Screen.CENTER_Y);
+            this.addChild(this._gameOverLabel);      
+                   
+            // add the START button to the MENU scene
             this._startOverButton = new objects.Button(
-                "StartOverButton",
+                "StartButton",
                 config.Screen.CENTER_X,
-                config.Screen.CENTER_Y + 180);
+                config.Screen.CENTER_Y + 80, true);
             this.addChild(this._startOverButton);
             
-            // Start Button event listener
+            // START Button event listener
             this._startOverButton.on("click", this._startOverButtonClick, this);
            
             
@@ -50,13 +47,12 @@ module scenes {
         
         //EVENT HANDLERS ++++++++++++++++++++
         
-        // Start Button click event handler
+        // START Button click event handler
         private _startOverButtonClick(event: createjs.MouseEvent) {
             // Switch to the LEFT_CAVE Scene
-            scene = config.Scene.MENU;
+            scene = config.Scene.SLOT_MACHINE;
             changeScene();
         }
         
-
     }
 }
