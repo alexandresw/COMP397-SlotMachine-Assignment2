@@ -15,10 +15,12 @@ var assetData = [
     { id: "Nextbutton", src: "../../Assets/images/Nextbutton.png" },
     { id: "StartButton", src: "../../Assets/images/StartButton.png" },
     { id: "StartOverButton", src: "../../Assets/images/StartOverButton.png" },
-    { id: "SlotMachine", src: "../../Assets/images/SlotMachine.png" },
+    { id: "SlotMachine", src: "../../Assets/images/slotmachine.png" },
     { id: "Bet1Button", src: "../../Assets/images/Bet1Button.png" },
     { id: "Bet10Button", src: "../../Assets/images/Bet10Button.png" },
     { id: "Bet100Button", src: "../../Assets/images/Bet100Button.png" },
+    { id: "ResetButton", src: "../../Assets/images/ResetButton.png" },
+    { id: "QuitButton", src: "../../Assets/images/QuitButton.png" },
     { id: "SpinButton", src: "../../Assets/images/SpinButton.png" },
     { id: "BlackBackground", src: "../../Assets/images/BlackBackground.png" },
     { id: "WhiteBackground", src: "../../Assets/images/WhiteBackground.png" }
@@ -43,7 +45,7 @@ function init() {
     // sets up our stats counting workflow
     setupStats();
     // set initial scene
-    scene = config.Scene.MENU;
+    scene = config.Scene.SLOT_MACHINE;
     changeScene();
 }
 // Main Game Loop function that handles what happens each "tick" or frame

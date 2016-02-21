@@ -10,10 +10,10 @@
     
     // Screen Constants
     export class Screen {
-        public static WIDTH: number = 640;
-        public static HEIGHT: number = 480;
-        public static CENTER_X: number = 320;
-        public static CENTER_Y: number = 240;
+        public static WIDTH: number = 720;
+        public static HEIGHT: number = 540;
+        public static CENTER_X: number = 360;
+        public static CENTER_Y: number = 270;
     }
     
     // Game Constants
