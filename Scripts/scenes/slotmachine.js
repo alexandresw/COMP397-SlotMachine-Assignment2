@@ -26,17 +26,15 @@ var scenes;
             // add background image to the scene
             this._backgroundImage = new createjs.Bitmap(assets.getResult("SlotMachine"));
             this.addChild(this._backgroundImage);
-            var bitmap = new createjs.Bitmap(assets.getResult("Reels"));
-            var graphics = new createjs.Graphics().beginBitmapFill(assets.getResult("Reels")).drawRect(0, 36, 86, 150);
-            var shape = new createjs.Shape(graphics);
-            var container = new createjs.Container();
-            //container.setBounds(190, 245, 90, 150);
-            shape.x = 190;
-            shape.y = 210;
-            //shape.y = 246;
-            shape.setBounds(0, 0, 86, 150);
-            console.log("bounds=" + shape.getTransformedBounds());
-            this.addChild(shape);
+            // create reel 1
+            this._reel1 = new objects.Reel(190, 246);
+            this.addChild(this._reel1);
+            // create reel 2
+            this._reel2 = new objects.Reel(310, 246);
+            this.addChild(this._reel2);
+            // create reel 3
+            this._reel3 = new objects.Reel(430, 246);
+            this.addChild(this._reel3);
             // add Bet1Button to the scene
             this._bet1Button = new objects.Button("Bet1Button", 205, 436, false);
             this.addChild(this._bet1Button);
@@ -79,41 +77,41 @@ var scenes;
         /* When this function is called it determines the betLine results.
         e.g. Bar - Orange - Banana */
         SlotMachine.prototype._reels = function () {
-            var betLine = [" ", " ", " "];
+            var betLine = [0, 0, 0];
             var outCome = [0, 0, 0];
             for (var spin = 0; spin < 3; spin++) {
                 outCome[spin] = Math.floor((Math.random() * 65) + 1);
                 switch (outCome[spin]) {
                     case this._checkRange(outCome[spin], 1, 27):
-                        betLine[spin] = "blank";
+                        betLine[spin] = config.ReelHeroes.BLANK;
                         this._blanks++;
                         break;
                     case this._checkRange(outCome[spin], 28, 37):
-                        betLine[spin] = "Captain";
+                        betLine[spin] = config.ReelHeroes.CAPITAIN;
                         this._captain++;
                         break;
                     case this._checkRange(outCome[spin], 38, 46):
-                        betLine[spin] = "Ironman";
+                        betLine[spin] = config.ReelHeroes.IRONMAN;
                         this._ironman++;
                         break;
                     case this._checkRange(outCome[spin], 47, 54):
-                        betLine[spin] = "Wolverine";
+                        betLine[spin] = config.ReelHeroes.WOLVERINE;
                         this._wolverine++;
                         break;
                     case this._checkRange(outCome[spin], 55, 59):
-                        betLine[spin] = "Spiderman";
+                        betLine[spin] = config.ReelHeroes.SPIDERMAN;
                         this._spiderman++;
                         break;
                     case this._checkRange(outCome[spin], 60, 62):
-                        betLine[spin] = "Hulk";
+                        betLine[spin] = config.ReelHeroes.HULK;
                         this._hulk++;
                         break;
                     case this._checkRange(outCome[spin], 63, 64):
-                        betLine[spin] = "Batman";
+                        betLine[spin] = config.ReelHeroes.BATMAN;
                         this._batman++;
                         break;
                     case this._checkRange(outCome[spin], 65, 65):
-                        betLine[spin] = "Superman";
+                        betLine[spin] = config.ReelHeroes.SUPERMAN;
                         this._superman++;
                         break;
                 }
@@ -138,7 +136,15 @@ var scenes;
         };
         SlotMachine.prototype._spinButtonClick = function (event) {
             console.log("Spin those reels!");
-            console.log(this._reels());
+            var result = this._reels();
+            console.log("result=" + result);
+            this._reel1.setHero(result[0]);
+            this._reel2.setHero(result[1]);
+            this._reel3.setHero(result[2]);
+            //this._test();
+        };
+        SlotMachine.prototype._test = function () {
+            //createjs.Tween.get(this._reel1).to({y:-600}, 0)
         };
         return SlotMachine;
     })(objects.Scene);

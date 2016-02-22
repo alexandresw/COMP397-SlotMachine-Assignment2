@@ -29,5 +29,19 @@ var config;
         return Game;
     })();
     config.Game = Game;
+    var ReelHeroes = (function () {
+        function ReelHeroes() {
+        }
+        ReelHeroes.SUPERMAN = 38;
+        ReelHeroes.BLANK = 113;
+        ReelHeroes.BATMAN = 188;
+        ReelHeroes.CAPITAIN = 263;
+        ReelHeroes.HULK = 338;
+        ReelHeroes.IRONMAN = 413;
+        ReelHeroes.SPIDERMAN = 488;
+        ReelHeroes.WOLVERINE = 563;
+        return ReelHeroes;
+    })();
+    config.ReelHeroes = ReelHeroes;
 })(config || (config = {}));
 //# sourceMappingURL=config.js.map

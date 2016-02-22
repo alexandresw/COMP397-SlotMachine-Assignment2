@@ -20,4 +20,15 @@
     export class Game {
         public static FPS: number = 60;
     }
+    
+    export class ReelHeroes {
+        public static SUPERMAN  : number = 38;
+        public static BLANK     : number = 113;
+        public static BATMAN    : number = 188;
+        public static CAPITAIN  : number = 263;
+        public static HULK      : number = 338;
+        public static IRONMAN   : number = 413;
+        public static SPIDERMAN : number = 488;
+        public static WOLVERINE : number = 563;
+    }
 }
