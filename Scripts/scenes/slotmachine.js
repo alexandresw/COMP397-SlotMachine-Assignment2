@@ -11,13 +11,13 @@ var scenes;
         // CONSTRUCTOR ++++++++++++++++++++++
         function SlotMachine() {
             _super.call(this);
-            this._grapes = 0;
-            this._bananas = 0;
-            this._oranges = 0;
-            this._cherries = 0;
-            this._bars = 0;
-            this._bells = 0;
-            this._sevens = 0;
+            this._captain = 0;
+            this._ironman = 0;
+            this._wolverine = 0;
+            this._spiderman = 0;
+            this._hulk = 0;
+            this._batman = 0;
+            this._superman = 0;
             this._blanks = 0;
         }
         // PUBLIC METHODS +++++++++++++++++++++
@@ -26,6 +26,17 @@ var scenes;
             // add background image to the scene
             this._backgroundImage = new createjs.Bitmap(assets.getResult("SlotMachine"));
             this.addChild(this._backgroundImage);
+            var bitmap = new createjs.Bitmap(assets.getResult("Reels"));
+            var graphics = new createjs.Graphics().beginBitmapFill(assets.getResult("Reels")).drawRect(0, 36, 86, 150);
+            var shape = new createjs.Shape(graphics);
+            var container = new createjs.Container();
+            //container.setBounds(190, 245, 90, 150);
+            shape.x = 190;
+            shape.y = 210;
+            //shape.y = 246;
+            shape.setBounds(0, 0, 86, 150);
+            console.log("bounds=" + shape.getTransformedBounds());
+            this.addChild(shape);
             // add Bet1Button to the scene
             this._bet1Button = new objects.Button("Bet1Button", 205, 436, false);
             this.addChild(this._bet1Button);
@@ -78,32 +89,32 @@ var scenes;
                         this._blanks++;
                         break;
                     case this._checkRange(outCome[spin], 28, 37):
-                        betLine[spin] = "Grapes";
-                        this._grapes++;
+                        betLine[spin] = "Captain";
+                        this._captain++;
                         break;
                     case this._checkRange(outCome[spin], 38, 46):
-                        betLine[spin] = "Banana";
-                        this._bananas++;
+                        betLine[spin] = "Ironman";
+                        this._ironman++;
                         break;
                     case this._checkRange(outCome[spin], 47, 54):
-                        betLine[spin] = "Orange";
-                        this._oranges++;
+                        betLine[spin] = "Wolverine";
+                        this._wolverine++;
                         break;
                     case this._checkRange(outCome[spin], 55, 59):
-                        betLine[spin] = "Cherry";
-                        this._cherries++;
+                        betLine[spin] = "Spiderman";
+                        this._spiderman++;
                         break;
                     case this._checkRange(outCome[spin], 60, 62):
-                        betLine[spin] = "Bar";
-                        this._bars++;
+                        betLine[spin] = "Hulk";
+                        this._hulk++;
                         break;
                     case this._checkRange(outCome[spin], 63, 64):
-                        betLine[spin] = "Bell";
-                        this._bells++;
+                        betLine[spin] = "Batman";
+                        this._batman++;
                         break;
                     case this._checkRange(outCome[spin], 65, 65):
-                        betLine[spin] = "Seven";
-                        this._sevens++;
+                        betLine[spin] = "Superman";
+                        this._superman++;
                         break;
                 }
             }

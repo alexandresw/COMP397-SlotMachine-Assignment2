@@ -10,13 +10,13 @@ module scenes {
         private _quitButton: objects.Button;
         private _spinButton: objects.Button;
 
-        private _grapes = 0;
-        private _bananas = 0;
-        private _oranges = 0;
-        private _cherries = 0;
-        private _bars = 0;
-        private _bells = 0;
-        private _sevens = 0;
+        private _captain = 0; 
+        private _ironman = 0;
+        private _wolverine = 0;
+        private _spiderman = 0;
+        private _hulk = 0;
+        private _batman = 0;
+        private _superman = 0;
         private _blanks = 0;
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor() {
@@ -30,6 +30,32 @@ module scenes {
             // add background image to the scene
             this._backgroundImage = new createjs.Bitmap(assets.getResult("SlotMachine"));
             this.addChild(this._backgroundImage);
+            
+            
+            
+            
+            var bitmap = new createjs.Bitmap(assets.getResult("Reels"));
+            var graphics = new createjs.Graphics().beginBitmapFill(assets.getResult("Reels")).drawRect(0, 36, 86, 150);
+            var shape = new createjs.Shape(graphics);
+ 
+            var container = new createjs.Container();
+            //container.setBounds(190, 245, 90, 150);
+            shape.x = 190;
+            shape.y = 210;
+            //shape.y = 246;
+            shape.setBounds(0, 0, 86, 150);
+            
+            console.log("bounds="+shape.getTransformedBounds());
+            
+            this.addChild(shape);
+            
+            
+            
+            
+            
+            
+            
+            
             
             // add Bet1Button to the scene
             this._bet1Button = new objects.Button("Bet1Button", 205, 436, false);
@@ -96,32 +122,32 @@ module scenes {
                         this._blanks++;
                         break;
                     case this._checkRange(outCome[spin], 28, 37): // 15.4% probability
-                        betLine[spin] = "Grapes";
-                        this._grapes++;
+                        betLine[spin] = "Captain";
+                        this._captain++;
                         break;
                     case this._checkRange(outCome[spin], 38, 46): // 13.8% probability
-                        betLine[spin] = "Banana";
-                        this._bananas++;
+                        betLine[spin] = "Ironman";
+                        this._ironman++;
                         break;
                     case this._checkRange(outCome[spin], 47, 54): // 12.3% probability
-                        betLine[spin] = "Orange";
-                        this._oranges++;
+                        betLine[spin] = "Wolverine";
+                        this._wolverine++;
                         break;
                     case this._checkRange(outCome[spin], 55, 59): //  7.7% probability
-                        betLine[spin] = "Cherry";
-                        this._cherries++;
+                        betLine[spin] = "Spiderman";
+                        this._spiderman++;
                         break;
                     case this._checkRange(outCome[spin], 60, 62): //  4.6% probability
-                        betLine[spin] = "Bar";
-                        this._bars++;
+                        betLine[spin] = "Hulk";
+                        this._hulk++;
                         break;
                     case this._checkRange(outCome[spin], 63, 64): //  3.1% probability
-                        betLine[spin] = "Bell";
-                        this._bells++;
+                        betLine[spin] = "Batman";
+                        this._batman++;
                         break;
                     case this._checkRange(outCome[spin], 65, 65): //  1.5% probability
-                        betLine[spin] = "Seven";
-                        this._sevens++;
+                        betLine[spin] = "Superman";
+                        this._superman++;
                         break;
                 }
             }
