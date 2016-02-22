@@ -13,6 +13,9 @@ module scenes {
         private _reel1: objects.Reel;
         private _reel2: objects.Reel;
         private _reel3: objects.Reel;
+        
+        private _playerMoneyLabel: createjs.Text;
+        private _jackpotLabel: createjs.Text;
 
         private _playerMoney: number;
         private _winnings: number;
@@ -53,6 +56,21 @@ module scenes {
             // create reel 3
             this._reel3 = new objects.Reel(430, 246);
             this.addChild(this._reel3);
+            
+            // add PlayerMoney text
+            this._playerMoneyLabel = new createjs.Text(this._paddingLeft("0", 5), "20px Monaco", "#0F0");
+            this._playerMoneyLabel.x = 408;
+            this._playerMoneyLabel.y = 198;
+            this._playerMoneyLabel.lineWidth = config.Screen.WIDTH - 40;
+            this.addChild(this._playerMoneyLabel);
+            
+            // add PlayerMoney text
+            this._jackpotLabel = new createjs.Text(this._paddingLeft("0", 5), "20px Monaco", "#0F0");
+            this._jackpotLabel.x = 250;
+            this._jackpotLabel.y = 198;
+            this._jackpotLabel.lineWidth = config.Screen.WIDTH - 40;
+            this.addChild(this._jackpotLabel);
+            
             
             // add Bet1Button to the scene
             this._bet1Button = new objects.Button("Bet1Button", 205, 436, false);
@@ -127,6 +145,9 @@ module scenes {
             this._reel1.setHero(result[0]);
             this._reel2.setHero(result[1]);
             this._reel3.setHero(result[2]);
+            
+            this._jackpotLabel.text = this._paddingLeft(""+this._jackpot, 5);
+            this._playerMoneyLabel.text = this._paddingLeft(""+this._playerMoney, 5);
         }
         
         /* Utility function to reset all Heroes tallies */
@@ -157,8 +178,10 @@ module scenes {
             console.log("------RESULTS------");
             // winRatio = winNumber / turn;
             console.log("Jackpot: " + this._jackpot);
+            this._jackpotLabel.text = this._paddingLeft(""+this._jackpot, 5);
             console.log("Player Bet: " + this._playerBet);
             console.log("Player Money: " + this._playerMoney);
+            this._playerMoneyLabel.text = this._paddingLeft(""+this._playerMoney, 5);
             console.log("Turn: " + this._turn);
             console.log("Wins: " + this._winNumber);
             console.log("Losses: " + this._lossNumber);
@@ -356,9 +379,10 @@ module scenes {
                 var spinResult = this._reels();
                 //fruits = spinResult[0] + " - " + spinResult[1] + " - " + spinResult[2];
                 //$("div#result>p").text(fruits);
-                this._reel1.setHero(spinResult[0]);
-                this._reel2.setHero(spinResult[1]);
-                this._reel3.setHero(spinResult[2]);
+                console.log("spinResult="+spinResult);
+                this._reel1.setHeroAnimated(spinResult[0]);
+                this._reel2.setHeroAnimated(spinResult[1]);
+                this._reel3.setHeroAnimated(spinResult[2]);
             
                 this._determineWinnings();
                 this._turn++;
@@ -378,6 +402,18 @@ module scenes {
             //createjs.Tween.get(this._reel1).to({y:-600}, 0)
             
            
+        }
+        
+        // left padding str with blank to a total of count chars
+        private _paddingLeft(str, count): string {
+            if (!str || str.length >= count) {
+                return str;
+            }
+            var max = (count - str.length);
+            for (var i = 0; i < max; i++) {
+                str = ' ' + str;
+            }
+            return str;
         }
         
         

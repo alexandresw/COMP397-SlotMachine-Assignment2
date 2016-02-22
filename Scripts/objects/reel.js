@@ -29,6 +29,16 @@ var objects;
         Reel.prototype.setHero = function (hero) {
             this._reelBitmap.y = -hero;
         };
+        Reel.prototype.setHeroAnimated = function (hero) {
+            createjs.Tween.get(this._reelBitmap)
+                .to({ y: -600 }, Math.abs(700 + this._reelBitmap.y))
+                .to({ y: 0 }, 0)
+                .to({ y: -600 }, 600)
+                .to({ y: 0 }, 0)
+                .to({ y: -600 }, 1200)
+                .to({ y: 0 }, 0)
+                .to({ y: -hero }, 1800);
+        };
         return Reel;
     })(createjs.Container);
     objects.Reel = Reel;
