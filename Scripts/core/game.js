@@ -14,6 +14,8 @@ var assetData = [
     { id: "BackButton", src: "../../Assets/images/BackButton.png" },
     { id: "Nextbutton", src: "../../Assets/images/Nextbutton.png" },
     { id: "StartButton", src: "../../Assets/images/StartButton.png" },
+    { id: "MenuBackground", src: "../../Assets/images/MenuBackground.jpg" },
+    { id: "SlotMachineBackground", src: "../../Assets/images/SlotMachineBackground.jpg" },
     { id: "StartOverButton", src: "../../Assets/images/StartOverButton.png" },
     { id: "SlotMachine", src: "../../Assets/images/slotmachine.png" },
     { id: "Bet1Button", src: "../../Assets/images/Bet1Button.png" },

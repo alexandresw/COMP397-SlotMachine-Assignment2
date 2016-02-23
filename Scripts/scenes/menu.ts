@@ -2,6 +2,7 @@
 module scenes {
     export class Menu extends objects.Scene {
         //PRIVATE INSTANCE VARIABLES ++++++++++++
+        private _backgroundImage: createjs.Bitmap;
         private _startButton: objects.Button;
         private _welcomeLabel: objects.Label;
         
@@ -13,7 +14,11 @@ module scenes {
         // PUBLIC METHODS +++++++++++++++++++++
         
         // Start Method
-        public start(): void {    
+        public start(): void {   
+
+            // add background image to the scene
+            this._backgroundImage = new createjs.Bitmap(assets.getResult("MenuBackground"));
+            this.addChild(this._backgroundImage); 
 
             
             // add the WELCOME Label to the MENU scene

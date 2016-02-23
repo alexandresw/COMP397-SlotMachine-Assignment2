@@ -16,8 +16,11 @@ var scenes;
         // Start Method
         SlotMachine.prototype.start = function () {
             // add background image to the scene
-            this._backgroundImage = new createjs.Bitmap(assets.getResult("SlotMachine"));
+            this._backgroundImage = new createjs.Bitmap(assets.getResult("SlotMachineBackground"));
             this.addChild(this._backgroundImage);
+            // add slotmachine image to the scene
+            this._slotmachineImage = new createjs.Bitmap(assets.getResult("SlotMachine"));
+            this.addChild(this._slotmachineImage);
             // create reel 1
             this._reel1 = new objects.Reel(190, 246);
             this.addChild(this._reel1);
@@ -77,26 +80,14 @@ var scenes;
         //PRIVATE METHODS
         /* Initialize game variables */
         SlotMachine.prototype._initialize = function () {
-            this._playerMoney = 1000;
-            this._winnings = 0;
-            this._jackpot = 5000;
-            this._turn = 0;
-            this._playerBet = 0;
-            this._winNumber = 0;
-            this._lossNumber = 0;
-            this._captain = 0;
-            this._ironman = 0;
-            this._wolverine = 0;
-            this._spiderman = 0;
-            this._hulk = 0;
-            this._batman = 0;
-            this._superman = 0;
-            this._blanks = 0;
-            // set initial position
+            this._resetAll();
+            this._resetHeroesTally();
+            // set initial heroes position
             var result = this._reels();
             this._reel1.setHero(result[0]);
             this._reel2.setHero(result[1]);
             this._reel3.setHero(result[2]);
+            // set game labels
             this._jackpotLabel.text = this._paddingLeft("" + this._jackpot, 5);
             this._playerMoneyLabel.text = this._paddingLeft("" + this._playerMoney, 5);
         };
@@ -120,21 +111,18 @@ var scenes;
             this._playerBet = 0;
             this._winNumber = 0;
             this._lossNumber = 0;
-            //this._winRatio = 0;
         };
         SlotMachine.prototype._showPlayerStats = function () {
             console.log("------RESULTS------");
-            // winRatio = winNumber / turn;
             console.log("Jackpot: " + this._jackpot);
-            this._jackpotLabel.text = this._paddingLeft("" + this._jackpot, 5);
             console.log("Player Bet: " + this._playerBet);
             console.log("Player Money: " + this._playerMoney);
-            this._playerMoneyLabel.text = this._paddingLeft("" + this._playerMoney, 5);
             console.log("Turn: " + this._turn);
             console.log("Wins: " + this._winNumber);
             console.log("Losses: " + this._lossNumber);
-            //console.log("Win Ratio: " + (winRatio * 100).toFixed(2) + "%");
             console.log("--------------------");
+            this._jackpotLabel.text = this._paddingLeft("" + this._jackpot, 5);
+            this._playerMoneyLabel.text = this._paddingLeft("" + this._playerMoney, 5);
         };
         /* Check to see if the player won the jackpot */
         SlotMachine.prototype._checkJackPot = function () {

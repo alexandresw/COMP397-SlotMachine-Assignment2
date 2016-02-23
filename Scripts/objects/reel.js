@@ -11,24 +11,26 @@ var objects;
         // CONSTRUCTOR +++++++++++++++++++++++++++++
         function Reel(x, y) {
             _super.call(this);
+            // set the reel position on the slotmachine scene  
             this.x = x;
             this.y = y;
             this.start();
         }
         // Create reel objects and add to scene
         Reel.prototype.start = function () {
+            // load heroes reel image
             this._reelBitmap = new createjs.Bitmap(assets.getResult("Reels"));
+            // create a mask to just show the image inside the reels window 
             var mask = new createjs.Shape(new createjs.Graphics().dr(0, 0, 86, 150));
             this._reelBitmap.mask = mask;
             this.addChild(this._reelBitmap);
             stage.addChild(this);
         };
-        // update game objects in my scene
-        Reel.prototype.update = function () {
-        };
+        // set the hero on the middle of the reel
         Reel.prototype.setHero = function (hero) {
             this._reelBitmap.y = -hero;
         };
+        // set the hero on the middle of the reel with a basic animation
         Reel.prototype.setHeroAnimated = function (hero) {
             createjs.Tween.get(this._reelBitmap)
                 .to({ y: -600 }, Math.abs(700 + this._reelBitmap.y))
@@ -37,7 +39,7 @@ var objects;
                 .to({ y: 0 }, 0)
                 .to({ y: -600 }, 1200)
                 .to({ y: 0 }, 0)
-                .to({ y: -hero }, 1800);
+                .to({ y: -hero }, 1000 + hero);
         };
         return Reel;
     })(createjs.Container);

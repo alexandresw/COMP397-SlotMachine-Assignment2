@@ -29,6 +29,7 @@ var config;
         return Game;
     })();
     config.Game = Game;
+    // Reels heroes and the pixel position on the reels image
     var ReelHeroes = (function () {
         function ReelHeroes() {
         }

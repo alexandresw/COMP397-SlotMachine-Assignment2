@@ -21,6 +21,7 @@
         public static FPS: number = 60;
     }
     
+    // Reels heroes and the pixel position on the reels image
     export class ReelHeroes {
         public static SUPERMAN  : number = 38;
         public static BLANK     : number = 113;

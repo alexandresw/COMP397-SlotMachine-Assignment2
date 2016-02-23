@@ -15,6 +15,9 @@ var scenes;
         // PUBLIC METHODS +++++++++++++++++++++
         // Start Method
         Menu.prototype.start = function () {
+            // add background image to the scene
+            this._backgroundImage = new createjs.Bitmap(assets.getResult("MenuBackground"));
+            this.addChild(this._backgroundImage);
             // add the WELCOME Label to the MENU scene
             this._welcomeLabel = new objects.Label("SLOT MACHINE", "60px Consolas", "#000000", config.Screen.CENTER_X, config.Screen.CENTER_Y);
             this.addChild(this._welcomeLabel);
