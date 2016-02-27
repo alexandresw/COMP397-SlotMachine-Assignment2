@@ -3,14 +3,16 @@ module objects {
     export class Reel extends createjs.Container {
         // PROTECTED INSTANCE VARIABLES
         private _reelBitmap: createjs.Bitmap;
-         
+        private _index: number;
+        
         // CONSTRUCTOR +++++++++++++++++++++++++++++
-        constructor(x: number, y: number) {
+        constructor(index: number, x: number, y: number) {
             super();  
 
             // set the reel position on the slotmachine scene  
             this.x = x;
-            this.y = y;        
+            this.y = y;  
+            this._index = index;
             this.start();
         }
         
@@ -35,19 +37,27 @@ module objects {
         
         // set the hero on the middle of the reel with a basic animation
         public setHeroAnimated(hero: number): void {
-            createjs.Tween.get(this._reelBitmap)
-                // go to the end of the reel
-                .to({y: -600}, Math.abs(700+this._reelBitmap.y))
-                // go back to initial position (0ms)
-                .to({y: 0}, 0)
-                // go to the end in 600ms
-                .to({y: -600}, 600)
-                .to({y: 0}, 0)
-                 // go to the end in 1200ms 
-                .to({y: -600}, 1200)
-                .to({y: 0}, 0)
-                 // go to the hero position in 1800ms
-                .to({y:-hero}, 1000+hero);
+            var tween = createjs.Tween.get(this._reelBitmap);
+        
+            // go to the end of the reel
+            tween.to({y: -600}, Math.abs(700+this._reelBitmap.y));
+                
+            // full complete spins
+            for(var i = 0; i < this._index; i++)
+                tween
+                    // go back to initial position (0ms)
+                    .to({y: 0}, 0)
+                    // go to the end in 500ms + delta
+                    .to({y: -600}, 300 + i*300).to({y: 0}, 0);
+                
+            // slow down the reel to the corret position 
+            tween
+                .to({y: -600}, 1200).to({y: 0}, 0)
+                .to({y:-hero}, 1000+hero).call( this._handleComplete, [this] );
+        }
+        
+        private _handleComplete(reel){
+            reel.dispatchEvent("reelCompleted");
         }
         
         

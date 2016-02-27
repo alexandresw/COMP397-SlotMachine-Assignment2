@@ -13,6 +13,7 @@ var objects;
             this.isCentered = isCentered;
             this.x = x;
             this.y = y;
+            this._pathString = pathString;
             this.width = 150;
             this.height = 50;
             if (this.isCentered) {
@@ -22,10 +23,19 @@ var objects;
             this.on("mouseover", this.overButton, this);
             this.on("mouseout", this.outButton, this);
         }
+        Button.prototype.enabled = function () {
+            this.image = assets.getResult(this._pathString);
+        };
+        Button.prototype.disabled = function () {
+            this.image = assets.getResult(this._pathString + 'Disabled');
+        };
+        Button.prototype.pressed = function () {
+            this.image = assets.getResult(this._pathString + 'Pressed');
+        };
         // PRIVATE METHODS
         // Event Handler for mouse over
         Button.prototype.overButton = function (event) {
-            event.currentTarget.alpha = 0.7;
+            event.currentTarget.alpha = 0.8;
         };
         // Event Handler for mouse out
         Button.prototype.outButton = function (event) {

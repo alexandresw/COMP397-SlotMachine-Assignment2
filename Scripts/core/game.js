@@ -16,14 +16,22 @@ var assetData = [
     { id: "StartButton", src: "../../Assets/images/StartButton.png" },
     { id: "MenuBackground", src: "../../Assets/images/MenuBackground.jpg" },
     { id: "SlotMachineBackground", src: "../../Assets/images/SlotMachineBackground.jpg" },
+    { id: "GameOverBackground", src: "../../Assets/images/GameOverBackground.jpg" },
     { id: "StartOverButton", src: "../../Assets/images/StartOverButton.png" },
     { id: "SlotMachine", src: "../../Assets/images/slotmachine.png" },
     { id: "Bet1Button", src: "../../Assets/images/Bet1Button.png" },
     { id: "Bet10Button", src: "../../Assets/images/Bet10Button.png" },
     { id: "Bet100Button", src: "../../Assets/images/Bet100Button.png" },
+    { id: "Bet1ButtonPressed", src: "../../Assets/images/Bet1ButtonPressed.png" },
+    { id: "Bet10ButtonPressed", src: "../../Assets/images/Bet10ButtonPressed.png" },
+    { id: "Bet100ButtonPressed", src: "../../Assets/images/Bet100ButtonPressed.png" },
+    { id: "Bet1ButtonDisabled", src: "../../Assets/images/Bet1ButtonDisabled.png" },
+    { id: "Bet10ButtonDisabled", src: "../../Assets/images/Bet10ButtonDisabled.png" },
+    { id: "Bet100ButtonDisabled", src: "../../Assets/images/Bet100ButtonDisabled.png" },
     { id: "ResetButton", src: "../../Assets/images/ResetButton.png" },
     { id: "QuitButton", src: "../../Assets/images/QuitButton.png" },
     { id: "SpinButton", src: "../../Assets/images/SpinButton.png" },
+    { id: "SpinButtonDisabled", src: "../../Assets/images/SpinButtonDisabled.png" },
     { id: "Reels", src: "../../Assets/images/reels.jpg" },
     { id: "BlackBackground", src: "../../Assets/images/BlackBackground.png" },
     { id: "WhiteBackground", src: "../../Assets/images/WhiteBackground.png" }
@@ -48,7 +56,7 @@ function init() {
     // sets up our stats counting workflow
     setupStats();
     // set initial scene
-    scene = config.Scene.SLOT_MACHINE;
+    scene = config.Scene.MENU;
     changeScene();
 }
 // Main Game Loop function that handles what happens each "tick" or frame

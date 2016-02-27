@@ -15,11 +15,14 @@ var scenes;
         // PUBLIC METHODS +++++++++++++++++++++
         // Start Method
         GameOver.prototype.start = function () {
+            // add background image to the scene
+            this._backgroundImage = new createjs.Bitmap(assets.getResult("GameOverBackground"));
+            this.addChild(this._backgroundImage);
             // add the WELCOME Label to the MENU scene
-            this._gameOverLabel = new objects.Label("GAME OVER", "60px Consolas", "#000000", config.Screen.CENTER_X, config.Screen.CENTER_Y);
+            this._gameOverLabel = new objects.Label("GAME OVER", "60px Consolas", "#FFFFFF", config.Screen.CENTER_X, config.Screen.CENTER_Y - 50);
             this.addChild(this._gameOverLabel);
             // add the START button to the MENU scene
-            this._startOverButton = new objects.Button("StartButton", config.Screen.CENTER_X, config.Screen.CENTER_Y + 80, true);
+            this._startOverButton = new objects.Button("StartOverButton", config.Screen.CENTER_X, config.Screen.CENTER_Y + 50, true);
             this.addChild(this._startOverButton);
             // START Button event listener
             this._startOverButton.on("click", this._startOverButtonClick, this);

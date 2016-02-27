@@ -9,11 +9,12 @@ var objects;
     var Reel = (function (_super) {
         __extends(Reel, _super);
         // CONSTRUCTOR +++++++++++++++++++++++++++++
-        function Reel(x, y) {
+        function Reel(index, x, y) {
             _super.call(this);
             // set the reel position on the slotmachine scene  
             this.x = x;
             this.y = y;
+            this._index = index;
             this.start();
         }
         // Create reel objects and add to scene
@@ -32,14 +33,21 @@ var objects;
         };
         // set the hero on the middle of the reel with a basic animation
         Reel.prototype.setHeroAnimated = function (hero) {
-            createjs.Tween.get(this._reelBitmap)
-                .to({ y: -600 }, Math.abs(700 + this._reelBitmap.y))
-                .to({ y: 0 }, 0)
-                .to({ y: -600 }, 600)
-                .to({ y: 0 }, 0)
-                .to({ y: -600 }, 1200)
-                .to({ y: 0 }, 0)
-                .to({ y: -hero }, 1000 + hero);
+            var tween = createjs.Tween.get(this._reelBitmap);
+            // go to the end of the reel
+            tween.to({ y: -600 }, Math.abs(700 + this._reelBitmap.y));
+            // full complete spins
+            for (var i = 0; i < this._index; i++)
+                tween
+                    .to({ y: 0 }, 0)
+                    .to({ y: -600 }, 300 + i * 300).to({ y: 0 }, 0);
+            // slow down the reel to the corret position 
+            tween
+                .to({ y: -600 }, 1200).to({ y: 0 }, 0)
+                .to({ y: -hero }, 1000 + hero).call(this._handleComplete, [this]);
+        };
+        Reel.prototype._handleComplete = function (reel) {
+            reel.dispatchEvent("reelCompleted");
         };
         return Reel;
     })(createjs.Container);
