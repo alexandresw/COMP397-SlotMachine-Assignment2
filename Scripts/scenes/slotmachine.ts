@@ -182,7 +182,6 @@ module scenes {
         /* Initialize game variables */
         private _initialize(): void {
             this._resetAll();
-            this._resetHeroesTally();
             
             // set initial heroes position
             var result = this._reels();
@@ -216,6 +215,7 @@ module scenes {
             this._playerBet = 0;
             this._winNumber = 0;
             this._lossNumber = 0;
+            this._resetHeroesTally();
         }
         
         /* Check to see if the player won the jackpot */
@@ -385,6 +385,7 @@ module scenes {
         private _resetButtonClick(event: createjs.MouseEvent): void {
             console.log("Reset Game!");
             // Restart Scene
+            this._resetAll();
             scene = config.Scene.SLOT_MACHINE;
             changeScene();
         }

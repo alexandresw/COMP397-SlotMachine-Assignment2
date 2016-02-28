@@ -125,7 +125,6 @@ var scenes;
         /* Initialize game variables */
         SlotMachine.prototype._initialize = function () {
             this._resetAll();
-            this._resetHeroesTally();
             // set initial heroes position
             var result = this._reels();
             this._reel1.setHero(result[0]);
@@ -155,6 +154,7 @@ var scenes;
             this._playerBet = 0;
             this._winNumber = 0;
             this._lossNumber = 0;
+            this._resetHeroesTally();
         };
         /* Check to see if the player won the jackpot */
         SlotMachine.prototype._checkJackPot = function () {
@@ -309,6 +309,7 @@ var scenes;
         SlotMachine.prototype._resetButtonClick = function (event) {
             console.log("Reset Game!");
             // Restart Scene
+            this._resetAll();
             scene = config.Scene.SLOT_MACHINE;
             changeScene();
         };
